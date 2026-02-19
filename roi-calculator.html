@@ -127,24 +127,33 @@
     </style>
 </head>
 
-<body class="min-h-screen gradient-mesh">
-    <!-- Nav -->
-    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 backdrop-blur-md">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
+    <nav
+        class="fixed top-0 w-full z-50 border-b border-black/5 dark:border-white/5 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="code.html" class="flex items-center gap-2">
+            <div class="flex items-center gap-2">
                 <div
                     class="w-8 h-8 bg-gradient-to-tr from-primary to-secondary rounded-lg flex items-center justify-center">
-                    <span class="material-symbols-outlined text-white text-xl text-white">blur_on</span>
+                    <span class="material-symbols-outlined text-white text-xl">blur_on</span>
                 </div>
                 <span class="text-xl font-bold tracking-tight">Lumina Quest</span>
-            </a>
-            <a class="hover:text-primary transition-colors" href="code.html">Home</a>
-            <a class="hover:text-primary transition-colors" href="services.html">Services</a>
-            <a class="hover:text-primary transition-colors" href="roi-calculator.html">ROI Calculator</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+                <a class="hover:text-primary transition-colors" href="code.html">Home</a>
+                <a class="hover:text-primary transition-colors" href="#">About</a>
+                <a class="hover:text-primary transition-colors" href="services.html">Services</a>
+                <a class="hover:text-primary transition-colors" href="roi-calculator.html">ROI Calculator</a>
+                <a class="hover:text-primary transition-colors" href="#">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="px-5 py-2.5 text-sm font-semibold rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-all">Get
+                    in touch</button>
+            </div>
         </div>
     </nav>
 
-    <main class="pt-32 pb-24 px-6">
+    <main class="relative pt-40 pb-24 overflow-hidden gradient-mesh">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-16 reveal reveal-up active">
                 <h1 class="text-4xl md:text-5xl font-extrabold mb-4">AI Value & ROI Calculator</h1>
@@ -258,7 +267,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 text-center">
+    <footer
+        class="py-12 border-t border-black/5 dark:border-white/5 bg-background-light dark:bg-background-dark text-center relative z-10 transition-colors duration-300">
         <p class="text-slate-500 text-sm">
             © 2024 Lumina Quest AI Inc. All calculations are estimates based on provided metrics.
         </p>

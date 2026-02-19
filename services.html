@@ -118,46 +118,115 @@
             /* Placeholder */
         }
 
-        /* Reveal Classes */
-        .reveal {
-            opacity: 0;
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        .reveal-scale {
+            transform: scale(0.95);
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: none !important;
+        .delay-100 {
+            transition-delay: 100ms;
         }
 
-        .reveal-up {
-            transform: translateY(40px);
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+
+        .delay-400 {
+            transition-delay: 400ms;
+        }
+
+        .delay-500 {
+            transition-delay: 500ms;
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Audio Player Styling */
+        .audio-player {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 99px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .audio-player:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .play-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: #059669;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(to right, #10b981, #8b5cf6);
+            width: 30%;
         }
     </style>
 </head>
 
-<body class="min-h-screen gradient-mesh">
-    <!-- Nav -->
-    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 backdrop-blur-md">
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
+    <nav
+        class="fixed top-0 w-full z-50 border-b border-black/5 dark:border-white/5 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <a href="code.html" class="flex items-center gap-2">
+            <div class="flex items-center gap-2">
                 <div
                     class="w-8 h-8 bg-gradient-to-tr from-primary to-secondary rounded-lg flex items-center justify-center">
                     <span class="material-symbols-outlined text-white text-xl">blur_on</span>
                 </div>
                 <span class="text-xl font-bold tracking-tight">Lumina Quest</span>
-            </a>
-            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
+            </div>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600 dark:text-slate-400">
                 <a class="hover:text-primary transition-colors" href="code.html">Home</a>
+                <a class="hover:text-primary transition-colors" href="#">About</a>
                 <a class="hover:text-primary transition-colors" href="services.html">Services</a>
                 <a class="hover:text-primary transition-colors" href="roi-calculator.html">ROI Calculator</a>
-                <button onclick="window.location.href='mailto:Sheldpm.Rollins@gmail.com'"
-                    class="px-5 py-2.5 text-sm font-semibold rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-all text-white">Get
+                <a class="hover:text-primary transition-colors" href="#">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="px-5 py-2.5 text-sm font-semibold rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-all">Get
                     in touch</button>
             </div>
         </div>
     </nav>
 
-    <main class="pt-32 pb-24 px-6">
+    <main class="relative pt-40 pb-24 overflow-hidden gradient-mesh">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-20 reveal reveal-up active">
                 <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Our Premium AI Services</h1>
@@ -394,7 +463,8 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-white/5 text-center">
+    <footer
+        class="py-12 border-t border-black/5 dark:border-white/5 bg-background-light dark:bg-background-dark text-center relative z-10 transition-colors duration-300">
         <p class="text-slate-500 text-sm mb-4">
             © 2024 Lumina Quest AI Inc. Empowering Human Potential.
         </p>
