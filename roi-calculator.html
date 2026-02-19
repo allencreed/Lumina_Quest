@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ROI Calculator - Lumina Quest</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#10b981", // Vibrant Green
+                        secondary: "#8b5cf6", // Purple
+                        "background-light": "#f8fafc",
+                        "background-dark": "#050505",
+                        accent: {
+                            purple: "#a855f7",
+                            blue: "#3b82f6",
+                            green: "#22c55e"
+                        }
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .gradient-mesh {
+            background: radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #94a3b8;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #10b981;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        .result-val {
+            background: linear-gradient(to right, #10b981, #8b5cf6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
+        /* Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: none !important;
+        }
+
+        .reveal-up {
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen gradient-mesh">
+    <!-- Nav -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="code.html" class="flex items-center gap-2">
+                <div
+                    class="w-8 h-8 bg-gradient-to-tr from-primary to-secondary rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-xl text-white">blur_on</span>
+                </div>
+                <span class="text-xl font-bold tracking-tight">Lumina Quest</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
+                <a class="hover:text-primary transition-colors" href="code.html">Back to Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal reveal-up active">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4">AI Value & ROI Calculator</h1>
+                <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+                    Quantify the impact of AI on your business. See how much time and money you can save with Lumina
+                    Quest.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Inputs Section -->
+                <div class="lg:col-span-5 space-y-6 reveal reveal-up delay-100 active">
+                    <div class="glass-card p-8 rounded-2xl space-y-8">
+                        <!-- Number of Employees -->
+                        <div class="input-group">
+                            <label for="numEmployees">Number of Employees</label>
+                            <input type="number" id="numEmployees" value="10" min="1" class="input-field"
+                                oninput="calculateROI()">
+                        </div>
+
+                        <!-- Avg Annual Compensation -->
+                        <div class="input-group">
+                            <label for="avgComp">Average Annual Compensation ($)</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">$</span>
+                                <input type="number" id="avgComp" value="75000" step="1000" class="input-field pl-8"
+                                    oninput="calculateROI()">
+                            </div>
+                            <p class="text-[10px] text-slate-500 mt-2">Include salary, taxes, and benefits.</p>
+                        </div>
+
+                        <!-- Productivity Lift -->
+                        <div class="input-group">
+                            <div class="flex justify-between items-center mb-4">
+                                <label for="prodLift" class="!mb-0">Estimated Productivity Lift</label>
+                                <span id="prodLiftVal" class="text-primary font-bold">15%</span>
+                            </div>
+                            <input type="range" id="prodLift" min="1" max="50" value="15" step="1"
+                                oninput="updateLift(this.value)">
+                            <div class="flex justify-between text-[10px] text-slate-500 mt-2">
+                                <span>Conservative (5%)</span>
+                                <span>Aggressive (30%+)</span>
+                            </div>
+                        </div>
+
+                        <!-- AI Costs -->
+                        <div class="input-group">
+                            <label for="aiCosts">Annual AI Tech & Training Costs ($)</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">$</span>
+                                <input type="number" id="aiCosts" value="5000" step="500" class="input-field pl-8"
+                                    oninput="calculateROI()">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div class="lg:col-span-7 space-y-6 reveal reveal-up delay-200 active">
+                    <div class="glass-card p-10 rounded-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] -mr-32 -mt-32"></div>
+                        <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 blur-[80px] -ml-32 -mb-32"></div>
+
+                        <div class="relative z-10 space-y-10">
+                            <div class="text-center">
+                                <p class="text-sm uppercase tracking-widest text-slate-400 mb-2">Total Annual Value
+                                    Generated</p>
+                                <div id="totalValue" class="text-5xl md:text-6xl result-val">$112,500</div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                                    <p class="text-xs uppercase tracking-widest text-slate-500 mb-2 font-semibold">
+                                        Yearly Net Savings</p>
+                                    <div id="netSavings" class="text-2xl font-bold text-white">$107,500</div>
+                                </div>
+                                <div class="bg-white/5 p-6 rounded-xl border border-white/5">
+                                    <p class="text-xs uppercase tracking-widest text-slate-500 mb-2 font-semibold">Total
+                                        ROI Percentage</p>
+                                    <div id="roiPercent" class="text-2xl font-bold text-primary">2,150%</div>
+                                </div>
+                            </div>
+
+                            <div class="pt-8 border-t border-white/5">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-primary">schedule</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-slate-400 text-sm">Time Saved Across Team</p>
+                                        <div id="hoursSaved" class="text-xl font-bold text-slate-200">3,120 Hours / Year
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-slate-500 leading-relaxed italic">
+                                    "This represents the equivalent of adding <span id="fteEquiv"
+                                        class="text-white font-semibold">1.5 full-time employees</span> to your team
+                                    without increasing headcount."
+                                </p>
+                            </div>
+
+                            <button onclick="window.location.href='mailto:Sheldpm.Rollins@gmail.com'"
+                                class="w-full py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
+                                Discuss These Results With Our Team
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 text-center">
+        <p class="text-slate-500 text-sm">
+            © 2024 Lumina Quest AI Inc. All calculations are estimates based on provided metrics.
+        </p>
+    </footer>
+
+    <script>
+        function updateLift(val) {
+            document.getElementById('prodLiftVal').innerText = val + '%';
+            calculateROI();
+        }
+
+        function calculateROI() {
+            const n = parseFloat(document.getElementById('numEmployees').value) || 0;
+            const comp = parseFloat(document.getElementById('avgComp').value) || 0;
+            const lift = parseFloat(document.getElementById('prodLift').value) || 0;
+            const cost = parseFloat(document.getElementById('aiCosts').value) || 0;
+
+            // Calculations
+            const grossVal = n * comp * (lift / 100);
+            const netSavings = grossVal - cost;
+            const roi = cost > 0 ? (netSavings / cost) * 100 : 0;
+            const hoursPerYear = n * 2080 * (lift / 100);
+            const fte = hoursPerYear / 2080;
+
+            // Formatters
+            const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+            const fmtNum = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+
+            // Update UI
+            document.getElementById('totalValue').innerText = fmt.format(grossVal);
+            document.getElementById('netSavings').innerText = fmt.format(netSavings);
+            document.getElementById('roiPercent').innerText = fmtNum.format(roi) + '%';
+            document.getElementById('hoursSaved').innerText = fmtNum.format(hoursPerYear) + ' Hours / Year';
+            document.getElementById('fteEquiv').innerText = fte.toFixed(1) + ' full-time employees';
+        }
+
+        // Initialize calculations
+        window.onload = calculateROI;
+    </script>
+</body>
+
+</html>
