@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Contact Us - Lumina Quest</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#10b981", // Vibrant Green
+                        secondary: "#8b5cf6", // Purple
+                        "background-light": "#f8fafc",
+                        "background-dark": "#050505",
+                        accent: {
+                            purple: "#a855f7",
+                            blue: "#3b82f6",
+                            green: "#22c55e"
+                        }
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gradient-mesh {
+            background: radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5);
+        }
+
+        .input-focus:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        /* Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: none !important;
+        }
+
+        .reveal-up {
+            transform: translateY(40px);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
+    <nav
+        class="fixed top-0 w-full z-50 border-b border-black/5 dark:border-white/5 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-8 h-8 bg-gradient-to-tr from-primary to-secondary rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-xl">blur_on</span>
+                </div>
+                <span class="text-xl font-bold tracking-tight">Lumina Quest</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+                <a class="hover:text-primary transition-colors" href="code.html">Home</a>
+                <a class="hover:text-primary transition-colors" href="#">About</a>
+                <a class="hover:text-primary transition-colors" href="services.html">Services</a>
+                <a class="hover:text-primary transition-colors" href="roi-calculator.html">ROI Calculator</a>
+                <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="px-5 py-2.5 text-sm font-semibold rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-all">Get
+                    in touch</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative pt-40 pb-24 overflow-hidden gradient-mesh min-h-screen">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal reveal-up active">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Let's Build the Future</h1>
+                <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+                    Have a question about our AI services? Ready to transform your business? Reach out and our team will
+                    get back to you shortly.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <!-- Contact Info -->
+                <div class="space-y-8 reveal reveal-up active">
+                    <div class="glass-card p-8 rounded-[32px]">
+                        <h2 class="text-2xl font-bold mb-6">Contact Information</h2>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                                    <span class="material-symbols-outlined">mail</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-slate-500">Email Us</p>
+                                    <p class="font-medium">Sheldpm.Rollins@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div
+                                    class="w-12 h-12 rounded-2xl bg-secondary/10 flex items-center justify-center text-secondary">
+                                    <span class="material-symbols-outlined">location_on</span>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-slate-500">Location</p>
+                                    <p class="font-medium">Global / Remote Intelligence</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-8 rounded-[32px]">
+                        <h3 class="text-xl font-bold mb-4">Why Lumina?</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            We don't just implement AI; we craft intelligence that aligns with your human vision. Our
+                            team is dedicated to providing bespoke solutions that drive measurable ROI.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="glass-card p-8 md:p-12 rounded-[32px] reveal reveal-up active">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-slate-400">First Name</label>
+                                <input type="text" placeholder="John"
+                                    class="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-slate-600 input-focus transition-all">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm font-medium text-slate-400">Last Name</label>
+                                <input type="text" placeholder="Doe"
+                                    class="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-slate-600 input-focus transition-all">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-slate-400">Email Address</label>
+                            <input type="email" placeholder="john@example.com"
+                                class="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-slate-600 input-focus transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-slate-400">Subject</label>
+                            <select
+                                class="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-2xl text-white appearance-none input-focus transition-all">
+                                <option class="bg-slate-900">General Inquiry</option>
+                                <option class="bg-slate-900">AI Strategy Consulting</option>
+                                <option class="bg-slate-900">Custom Implementation</option>
+                                <option class="bg-slate-900">Partnership</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-slate-400">Message</label>
+                            <textarea rows="4" placeholder="How can we help?"
+                                class="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-slate-600 input-focus transition-all"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-2xl hover:opacity-90 transition-all shadow-lg shadow-primary/20">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer
+        class="py-12 border-t border-black/5 dark:border-white/5 bg-background-light dark:bg-background-dark text-center relative z-10 transition-colors duration-300">
+        <p class="text-slate-500 text-sm mb-4">
+            © 2024 Lumina Quest AI Inc. Empowering Human Potential.
+        </p>
+        <div class="flex justify-center gap-6">
+            <a href="#" class="text-xs text-slate-600 hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="#" class="text-xs text-slate-600 hover:text-primary transition-colors">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('active'); }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        });
+    </script>
+</body>
+
+</html>
