@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Our Services - Lumina Quest</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#10b981", // Vibrant Green
+                        secondary: "#8b5cf6", // Purple
+                        "background-light": "#f8fafc",
+                        "background-dark": "#050505",
+                        accent: {
+                            purple: "#a855f7",
+                            blue: "#3b82f6",
+                            green: "#22c55e"
+                        }
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        .gradient-mesh {
+            background: radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(16, 185, 129, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 20px 40px -20px rgba(16, 185, 129, 0.2);
+        }
+
+        /* Audio Player Styling */
+        .audio-player {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 16px;
+            border-radius: 99px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .audio-player:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .play-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #10b981;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: #059669;
+        }
+
+        .progress-bar {
+            flex-grow: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background: linear-gradient(to right, #10b981, #8b5cf6);
+            width: 30%;
+            /* Placeholder */
+        }
+
+        /* Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: none !important;
+        }
+
+        .reveal-up {
+            transform: translateY(40px);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen gradient-mesh">
+    <!-- Nav -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="code.html" class="flex items-center gap-2">
+                <div
+                    class="w-8 h-8 bg-gradient-to-tr from-primary to-secondary rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-xl">blur_on</span>
+                </div>
+                <span class="text-xl font-bold tracking-tight">Lumina Quest</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
+                <a class="hover:text-primary transition-colors" href="code.html">Home</a>
+                <a class="hover:text-primary transition-colors" href="services.html">Services</a>
+                <a class="hover:text-primary transition-colors" href="roi-calculator.html">ROI Calculator</a>
+                <button onclick="window.location.href='mailto:Sheldpm.Rollins@gmail.com'"
+                    class="px-5 py-2.5 text-sm font-semibold rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-all text-white">Get
+                    in touch</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 reveal reveal-up active">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Our Premium AI Services</h1>
+                <p class="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
+                    Explore our suite of AI-powered marketing and consulting solutions designed to transform your
+                    business operations and drive exponential growth.
+                </p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up active">
+                    <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary text-2xl font-bold">smart_toy</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Chatbot Strategy & Implementation</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                        Automate customer service and lead qualification with intelligent, conversational AI agents that
+                        work 24/7.
+                    </p>
+                    <div class="audio-player mt-auto">
+                        <div class="play-btn">
+                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-100 active">
+                    <div class="w-12 h-12 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-secondary text-2xl font-bold">edit_note</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">AI Content Creation & Optimization</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                        Generate high-converting blogs, ads, and emails scaled to your brand's unique voice and
+                        optimized for impact.
+                    </p>
+                    <div class="audio-player mt-auto">
+                        <div class="play-btn">
+                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-200 active">
+                    <div class="w-12 h-12 bg-accent-blue/20 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-accent-blue text-2xl font-bold">insights</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Predictive Analytics for Customer Insights</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                        Forecast trends and understand audience behavior before it happens, enabling proactive business
+                        decisions.
+                    </p>
+                    <div class="audio-player mt-auto">
+                        <div class="play-btn">
+                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up active">
+                    <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary text-2xl font-bold">target</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Personalization Engine Setup</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                        Deliver hyper-targeted content and product recommendations to every user, increasing conversion
+                        and loyalty.
+                    </p>
+                    <div class="audio-player mt-auto">
+                        <div class="play-btn">
+                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-100 active">
+                    <div class="w-12 h-12 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <span
+                            class="material-symbols-outlined text-secondary text-2xl font-bold">video_camera_front</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">AI-Powered Visual & Video Creation</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                        Produce stunning graphics and high-quality videos instantly, empowering your marketing team to
+                        create at the speed of thought.
+                    </p>
+                    <div class="audio-player mt-auto">
+                        <div class="play-btn">
+                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-200 active">
+                    <div class="w-12 h-12 bg-accent-blue/20 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-accent-blue text-2xl font-bold">share</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Intelligent Social Media Management</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                        Schedule, post, and analyze engagement smartly using AI to determine peak times and optimal
+                        content types.
+                    </p>
+                    <div class="audio-player mt-auto">
+                        <div class="play-btn">
+                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 7 -->
+                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up active">
+                    <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary text-2xl font-bold">ads_click</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Programmatic Advertising Management</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                        Optimize ad spend automatically across platforms for maximum ROI and minimum waste using
+                        real-time AI bidding.
+                    </p>
+                    <div class="audio-player mt-auto">
+                        <div class="play-btn">
+                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 8 -->
+                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-100 active">
+                    <div class="w-12 h-12 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-secondary text-2xl font-bold">mic_none</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Voice Search & SEO Consulting</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                        Optimize your content for voice-activated search queries to stay ahead of the curve as
+                        conversational search dominates.
+                    </p>
+                    <div class="audio-player mt-auto">
+                        <div class="play-btn">
+                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 9 -->
+                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-200 active">
+                    <div class="w-12 h-12 bg-accent-blue/20 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-accent-blue text-2xl font-bold">query_stats</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">A/B Testing & Conversion Optimization</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                        Use AI to refine layouts and copy at scale, testing thousands of variations to find the perfect
+                        conversion formula.
+                    </p>
+                    <div class="audio-player mt-auto">
+                        <div class="play-btn">
+                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 10 -->
+                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up active">
+                    <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
+                        <span class="material-symbols-outlined text-primary text-2xl font-bold">settings_suggest</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">AI Workflow Automation Consulting</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+                        Streamline marketing operations and eliminate repetitive tasks by building intelligent workflows
+                        that run themselves.
+                    </p>
+                    <div class="audio-player mt-auto">
+                        <div class="play-btn">
+                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                        </div>
+                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 text-center">
+        <p class="text-slate-500 text-sm mb-4">
+            © 2024 Lumina Quest AI Inc. Empowering Human Potential.
+        </p>
+        <div class="flex justify-center gap-6">
+            <a href="code.html" class="text-xs text-slate-600 hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="code.html" class="text-xs text-slate-600 hover:text-primary transition-colors">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script>
+        // Reveal animations on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            // Basic play button toggle visualization
+            document.querySelectorAll('.play-btn').forEach(btn => {
+                btn.onclick = () => {
+                    const icon = btn.querySelector('.material-symbols-outlined');
+                    const fill = btn.parentElement.querySelector('.progress-fill');
+
+                    if (icon.innerText === 'play_arrow') {
+                        icon.innerText = 'pause';
+                        fill.style.width = '100%';
+                        fill.style.transition = 'width 5s linear';
+
+                        setTimeout(() => {
+                            if (icon.innerText === 'pause') {
+                                icon.innerText = 'play_arrow';
+                                fill.style.width = '0%';
+                                fill.style.transition = 'none';
+                            }
+                        }, 5000);
+                    } else {
+                        icon.innerText = 'play_arrow';
+                        fill.style.width = '0%';
+                        fill.style.transition = 'none';
+                    }
+                };
+            });
+        });
+    </script>
+</body>
+
+</html>
