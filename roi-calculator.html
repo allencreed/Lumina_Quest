@@ -139,7 +139,7 @@
                 <span class="text-xl font-bold tracking-tight">Lumina Quest</span>
             </div>
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600 dark:text-slate-400">
-                <a class="hover:text-primary transition-colors" href="code.html">Home</a>
+                <a class="hover:text-primary transition-colors" href="index.html">Home</a>
                 <a class="hover:text-primary transition-colors" href="#">About</a>
                 <a class="hover:text-primary transition-colors" href="services.html">Services</a>
                 <a class="hover:text-primary transition-colors" href="roi-calculator.html">ROI Calculator</a>
@@ -154,114 +154,178 @@
     </nav>
 
     <main class="relative pt-40 pb-24 overflow-hidden gradient-mesh">
-        <div class="max-w-6xl mx-auto">
+        <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16 reveal reveal-up active">
                 <h1 class="text-4xl md:text-5xl font-extrabold mb-4">AI Value & ROI Calculator</h1>
                 <p class="text-slate-400 max-w-2xl mx-auto text-lg">
-                    Quantify the impact of AI on your business. See how much time and money you can save with Lumina
-                    Quest.
+                    Discover how much time and money you can save by implementing intelligent automation across your
+                    business.
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <!-- Inputs Section -->
-                <div class="lg:col-span-5 space-y-6 reveal reveal-up delay-100 active">
-                    <div class="glass-card p-8 rounded-2xl space-y-8">
-                        <!-- Number of Employees -->
-                        <div class="input-group">
-                            <label for="numEmployees">Number of Employees</label>
-                            <input type="number" id="numEmployees" value="10" min="1" class="input-field"
-                                oninput="calculateROI()">
+            <div class="space-y-12">
+                <!-- Section 1: Phone Agent ROI -->
+                <div class="glass-card p-10 rounded-3xl reveal reveal-up active">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary text-2xl">support_agent</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Phone Agent ROI (Inbound / Outbound)</h2>
+                            <p class="text-sm text-slate-400">Compare human customer service reps vs AI agent capability
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div class="space-y-8">
+                            <!-- Number of Reps -->
+                            <div class="input-group">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="numReps" class="!mb-0">Number of Customer Service Reps</label>
+                                    <span id="numRepsVal" class="text-primary font-bold">10</span>
+                                </div>
+                                <input type="range" id="numReps" min="1" max="100" value="10" step="1"
+                                    oninput="updatePhoneROI()">
+                            </div>
+
+                            <!-- Average Monthly Calls -->
+                            <div class="input-group">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="monthlyCalls" class="!mb-0">Average Monthly Calls</label>
+                                    <span id="monthlyCallsVal" class="text-primary font-bold">5,000</span>
+                                </div>
+                                <input type="range" id="monthlyCalls" min="100" max="25000" value="5000" step="100"
+                                    oninput="updatePhoneROI()">
+                            </div>
                         </div>
 
-                        <!-- Avg Annual Compensation -->
-                        <div class="input-group">
-                            <label for="avgComp">Average Annual Compensation ($)</label>
-                            <div class="relative">
-                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">$</span>
-                                <input type="number" id="avgComp" value="75000" step="1000" class="input-field pl-8"
-                                    oninput="calculateROI()">
-                            </div>
-                            <p class="text-[10px] text-slate-500 mt-2">Include salary, taxes, and benefits.</p>
-                        </div>
-
-                        <!-- Productivity Lift -->
-                        <div class="input-group">
-                            <div class="flex justify-between items-center mb-4">
-                                <label for="prodLift" class="!mb-0">Estimated Productivity Lift</label>
-                                <span id="prodLiftVal" class="text-primary font-bold">15%</span>
-                            </div>
-                            <input type="range" id="prodLift" min="1" max="50" value="15" step="1"
-                                oninput="updateLift(this.value)">
-                            <div class="flex justify-between text-[10px] text-slate-500 mt-2">
-                                <span>Conservative (5%)</span>
-                                <span>Aggressive (30%+)</span>
-                            </div>
-                        </div>
-
-                        <!-- AI Costs -->
-                        <div class="input-group">
-                            <label for="aiCosts">Annual AI Tech & Training Costs ($)</label>
-                            <div class="relative">
-                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500">$</span>
-                                <input type="number" id="aiCosts" value="5000" step="500" class="input-field pl-8"
-                                    oninput="calculateROI()">
-                            </div>
+                        <div
+                            class="flex flex-col justify-center items-center p-8 bg-black/40 rounded-2xl border border-white/5 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-[40px] rounded-full"></div>
+                            <p class="text-xs uppercase tracking-widest text-slate-500 mb-2 font-semibold z-10">Your
+                                Total Savings / Yr</p>
+                            <div id="phoneSavings"
+                                class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary z-10">
+                                $215,000</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Results Section -->
-                <div class="lg:col-span-7 space-y-6 reveal reveal-up delay-200 active">
-                    <div class="glass-card p-10 rounded-2xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-[80px] -mr-32 -mt-32"></div>
-                        <div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 blur-[80px] -ml-32 -mb-32"></div>
+                <!-- Section 2: AI Receptionist -->
+                <div class="glass-card p-10 rounded-3xl reveal reveal-up active delay-100">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-secondary/20 rounded-xl flex items-center justify-center">
+                            <span class="material-symbols-outlined text-secondary text-2xl">phone_in_talk</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">AI Receptionist</h2>
+                            <p class="text-sm text-slate-400">Quantify recovered revenue from missed calls and time
+                                saved</p>
+                        </div>
+                    </div>
 
-                        <div class="relative z-10 space-y-10">
-                            <div class="text-center">
-                                <p class="text-sm uppercase tracking-widest text-slate-400 mb-2">Total Annual Value
-                                    Generated</p>
-                                <div id="totalValue" class="text-5xl md:text-6xl result-val">$112,500</div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div class="space-y-8">
+                            <!-- Hours on Phone -->
+                            <div class="input-group">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="hoursPhone" class="!mb-0">Hours Spent on Phone / Day</label>
+                                    <span id="hoursPhoneVal" class="text-secondary font-bold">4 Hours</span>
+                                </div>
+                                <input type="range" id="hoursPhone" min="1" max="24" value="4" step="1"
+                                    oninput="updateReceptionistROI()">
                             </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="bg-white/5 p-6 rounded-xl border border-white/5">
-                                    <p class="text-xs uppercase tracking-widest text-slate-500 mb-2 font-semibold">
-                                        Yearly Net Savings</p>
-                                    <div id="netSavings" class="text-2xl font-bold text-white">$107,500</div>
+                            <!-- Missed Calls -->
+                            <div class="input-group">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="missedCalls" class="!mb-0">Average Missed Calls / Week</label>
+                                    <span id="missedCallsVal" class="text-secondary font-bold">50</span>
                                 </div>
-                                <div class="bg-white/5 p-6 rounded-xl border border-white/5">
-                                    <p class="text-xs uppercase tracking-widest text-slate-500 mb-2 font-semibold">Total
-                                        ROI Percentage</p>
-                                    <div id="roiPercent" class="text-2xl font-bold text-primary">2,150%</div>
-                                </div>
+                                <input type="range" id="missedCalls" min="5" max="500" value="50" step="5"
+                                    oninput="updateReceptionistROI()">
                             </div>
+                        </div>
 
-                            <div class="pt-8 border-t border-white/5">
-                                <div class="flex items-center gap-4 mb-6">
-                                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-primary">schedule</span>
-                                    </div>
-                                    <div>
-                                        <p class="text-slate-400 text-sm">Time Saved Across Team</p>
-                                        <div id="hoursSaved" class="text-xl font-bold text-slate-200">3,120 Hours / Year
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="text-sm text-slate-500 leading-relaxed italic">
-                                    "This represents the equivalent of adding <span id="fteEquiv"
-                                        class="text-white font-semibold">1.5 full-time employees</span> to your team
-                                    without increasing headcount."
-                                </p>
+                        <div
+                            class="flex flex-col justify-center items-center p-8 bg-black/40 rounded-2xl border border-white/5 relative overflow-hidden">
+                            <div class="absolute bottom-0 left-0 w-32 h-32 bg-secondary/10 blur-[40px] rounded-full">
                             </div>
-
-                            <button onclick="window.location.href='mailto:info@luminaquest.com'"
-                                class="w-full py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform">
-                                Discuss These Results With Our Team
-                            </button>
+                            <p class="text-xs uppercase tracking-widest text-slate-500 mb-2 font-semibold z-10">Your
+                                Total Savings / Yr</p>
+                            <div id="receptionistSavings"
+                                class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-secondary to-accent-blue z-10">
+                                $130,000</div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Section 3: Infrastructure Automation -->
+                <div class="glass-card p-10 rounded-3xl reveal reveal-up active delay-200">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-12 h-12 bg-accent-blue/20 rounded-xl flex items-center justify-center">
+                            <span class="material-symbols-outlined text-accent-blue text-2xl">account_tree</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Infrastructure Automation</h2>
+                            <p class="text-sm text-slate-400">Estimate hours saved by connecting your disconnected tools
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="mb-8 p-4 bg-accent-blue/5 border border-accent-blue/20 rounded-xl flex gap-3 text-sm text-slate-300">
+                        <span class="material-symbols-outlined text-accent-blue">info</span>
+                        <p><strong>Note:</strong> Infrastructure Automation ROI varies significantly from business to
+                            business and typically requires a custom workflow audit. This calculation provides a generic
+                            baseline.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div class="space-y-8">
+                            <!-- Manual Tasks -->
+                            <div class="input-group">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="manualHours" class="!mb-0">Hours Spent on Manual Tasks / Week</label>
+                                    <span id="manualHoursVal" class="text-accent-blue font-bold">40 Hours</span>
+                                </div>
+                                <input type="range" id="manualHours" min="5" max="250" value="40" step="5"
+                                    oninput="updateInfraROI()">
+                            </div>
+
+                            <!-- Software Tools -->
+                            <div class="input-group">
+                                <div class="flex justify-between items-center mb-2">
+                                    <label for="numTools" class="!mb-0">Number of Disconnected Software Tools</label>
+                                    <span id="numToolsVal" class="text-accent-blue font-bold">8 Tools</span>
+                                </div>
+                                <input type="range" id="numTools" min="2" max="30" value="8" step="1"
+                                    oninput="updateInfraROI()">
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex flex-col justify-center items-center p-8 bg-black/40 rounded-2xl border border-white/5 relative overflow-hidden">
+                            <div
+                                class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-accent-blue/10 blur-[50px] rounded-full">
+                            </div>
+                            <p class="text-xs uppercase tracking-widest text-slate-500 mb-2 font-semibold z-10">Your
+                                Total Savings / Yr</p>
+                            <div id="infraSavings"
+                                class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-primary z-10">
+                                $83,200</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-16 text-center">
+                <button onclick="window.location.href='mailto:sheldon.rollins@icloud.com'"
+                    class="px-10 py-5 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-full shadow-lg shadow-primary/20 hover:scale-[1.02] transition-transform text-lg inline-flex items-center gap-3">
+                    Discuss Your Custom ROI <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
             </div>
         </div>
     </main>
@@ -270,7 +334,7 @@
     <footer
         class="py-12 border-t border-black/5 dark:border-white/5 bg-background-light dark:bg-background-dark text-center relative z-10 transition-colors duration-300">
         <p class="text-slate-500 text-sm">
-            © 2024 Lumina Quest AI Inc. All calculations are estimates based on provided metrics.
+            © 2024 Lumina Quest AI Inc. All calculations are baseline estimates and do not guarantee exact returns.
         </p>
     </footer>
 
@@ -293,38 +357,68 @@
             document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         });
 
-        function updateLift(val) {
-            document.getElementById('prodLiftVal').innerText = val + '%';
-            calculateROI();
+        // Formatters
+        const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+        const fmtNum = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+
+        // 1. Phone Agent ROI
+        // Assumptions: Human Agent costs $50k/yr. AI Agent costs approx 5 cents per call.
+        function updatePhoneROI() {
+            const reps = parseInt(document.getElementById('numReps').value);
+            const calls = parseInt(document.getElementById('monthlyCalls').value);
+
+            document.getElementById('numRepsVal').innerText = fmtNum.format(reps);
+            document.getElementById('monthlyCallsVal').innerText = fmtNum.format(calls);
+
+            const humanCost = reps * 50000;
+            const aiYearlyCost = calls * 12 * 0.05; // 5 cents per call
+            const savings = Math.max(0, humanCost - aiYearlyCost);
+
+            document.getElementById('phoneSavings').innerText = fmt.format(savings);
         }
 
-        function calculateROI() {
-            const n = parseFloat(document.getElementById('numEmployees').value) || 0;
-            const comp = parseFloat(document.getElementById('avgComp').value) || 0;
-            const lift = parseFloat(document.getElementById('prodLift').value) || 0;
-            const cost = parseFloat(document.getElementById('aiCosts').value) || 0;
+        // 2. AI Receptionist ROI
+        // Assumptions: Hourly wage $25. Average value of missed call converted to customer = $50
+        function updateReceptionistROI() {
+            const hours = parseInt(document.getElementById('hoursPhone').value);
+            const missed = parseInt(document.getElementById('missedCalls').value);
 
-            // Calculations
-            const grossVal = n * comp * (lift / 100);
-            const netSavings = grossVal - cost;
-            const roi = cost > 0 ? (netSavings / cost) * 100 : 0;
-            const hoursPerYear = n * 2080 * (lift / 100);
-            const fte = hoursPerYear / 2080;
+            document.getElementById('hoursPhoneVal').innerText = hours + ' Hours';
+            document.getElementById('missedCallsVal').innerText = fmtNum.format(missed);
 
-            // Formatters
-            const fmt = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
-            const fmtNum = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+            const timeSavingsValue = hours * 25 * 260; // 260 working days/yr
+            const recoveredRevenue = missed * 52 * 50; // 52 weeks/yr
+            const total = timeSavingsValue + recoveredRevenue;
 
-            // Update UI
-            document.getElementById('totalValue').innerText = fmt.format(grossVal);
-            document.getElementById('netSavings').innerText = fmt.format(netSavings);
-            document.getElementById('roiPercent').innerText = fmtNum.format(roi) + '%';
-            document.getElementById('hoursSaved').innerText = fmtNum.format(hoursPerYear) + ' Hours / Year';
-            document.getElementById('fteEquiv').innerText = fte.toFixed(1) + ' full-time employees';
+            document.getElementById('receptionistSavings').innerText = fmt.format(total);
+        }
+
+        // 3. Infrastructure Automation ROI
+        // Assumptions: Blended hourly rate of team doing manual tasks $40/hr
+        function updateInfraROI() {
+            const manualHours = parseInt(document.getElementById('manualHours').value);
+            const numTools = parseInt(document.getElementById('numTools').value);
+
+            document.getElementById('manualHoursVal').innerText = manualHours + ' Hours';
+            document.getElementById('numToolsVal').innerText = numTools + ' Tools';
+
+            // Base savings from eliminating manual hours
+            const timeSavings = manualHours * 52 * 40;
+
+            // Additional conceptual savings/efficiency multiplier based on number of integrated tools (reducing context switching/errors)
+            const efficiencyMultiplier = 1 + (numTools * 0.05);
+
+            const total = timeSavings * efficiencyMultiplier;
+
+            document.getElementById('infraSavings').innerText = fmt.format(total);
         }
 
         // Initialize calculations
-        window.onload = calculateROI;
+        window.onload = () => {
+            updatePhoneROI();
+            updateReceptionistROI();
+            updateInfraROI();
+        };
     </script>
 </body>
 

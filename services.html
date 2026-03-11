@@ -115,7 +115,29 @@
             height: 100%;
             background: linear-gradient(to right, #10b981, #8b5cf6);
             width: 30%;
-            /* Placeholder */
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: none !important;
+        }
+
+        .reveal-up {
+            transform: translateY(40px);
+        }
+
+        .reveal-left {
+            transform: translateX(-30px);
+        }
+
+        .reveal-right {
+            transform: translateX(30px);
         }
 
         .reveal-scale {
@@ -145,58 +167,6 @@
         .floating {
             animation: float 4s ease-in-out infinite;
         }
-
-        /* Audio Player Styling */
-        .audio-player {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 8px 16px;
-            border-radius: 99px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .audio-player:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(139, 92, 246, 0.3);
-        }
-
-        .play-btn {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #10b981;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .play-btn:hover {
-            transform: scale(1.1);
-            background: #059669;
-        }
-
-        .progress-bar {
-            flex-grow: 1;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            background: linear-gradient(to right, #10b981, #8b5cf6);
-            width: 30%;
-        }
     </style>
 </head>
 
@@ -212,7 +182,7 @@
                 <span class="text-xl font-bold tracking-tight">Lumina Quest</span>
             </div>
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600 dark:text-slate-400">
-                <a class="hover:text-primary transition-colors" href="code.html">Home</a>
+                <a class="hover:text-primary transition-colors" href="index.html">Home</a>
                 <a class="hover:text-primary transition-colors" href="#">About</a>
                 <a class="hover:text-primary transition-colors" href="services.html">Services</a>
                 <a class="hover:text-primary transition-colors" href="roi-calculator.html">ROI Calculator</a>
@@ -227,234 +197,489 @@
     </nav>
 
     <main class="relative pt-40 pb-24 overflow-hidden gradient-mesh">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20 reveal reveal-up active">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">Our Premium AI Services</h1>
-                <p class="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
-                    Explore our suite of AI-powered marketing and consulting solutions designed to transform your
-                    business operations and drive exponential growth.
-                </p>
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Hero Stats Section -->
+            <div class="text-center mb-24 reveal reveal-up active">
+                <span
+                    class="inline-block py-1 px-3 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold mb-6 tracking-wide uppercase">
+                    The ROI of AI Integration
+                </span>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-8 tracking-tight max-w-4xl mx-auto">
+                    Why Industry Leaders Are <br />
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Moving to
+                        AI</span> Today.
+                </h1>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-16 text-left">
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-primary">
+                        <div class="text-4xl font-black text-white mb-2">40%</div>
+                        <p class="text-slate-400 text-sm">Increase in overall business productivity by automating
+                            repetitive tasks and operations.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-secondary">
+                        <div class="text-4xl font-black text-white mb-2">60%</div>
+                        <p class="text-slate-400 text-sm">Reduction in operational costs within the first year of full
+                            AI integration.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-accent-blue">
+                        <div class="text-4xl font-black text-white mb-2">3x</div>
+                        <p class="text-slate-400 text-sm">Faster processing of customer inquiries using intelligent AI
+                            agent routing.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-white">
+                        <div class="text-4xl font-black text-white mb-2">85%</div>
+                        <p class="text-slate-400 text-sm">Of executives believe AI will allow their companies to
+                            obtain or sustain a competitive advantage.</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Services Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up active">
-                    <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-primary text-2xl font-bold">smart_toy</span>
+            <div class="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-20">
+            </div>
+
+            <!-- Split Services Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+
+                <!-- Column 1: Marketing & Personalization -->
+                <div>
+                    <div class="flex items-center gap-4 mb-10 reveal reveal-up active">
+                        <div class="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary">campaign</span>
+                        </div>
+                        <h2 class="text-3xl font-bold">Marketing & Personalization</h2>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Chatbot Strategy & Implementation</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                        Automate customer service and lead qualification with intelligent, conversational AI agents that
-                        work 24/7.
-                    </p>
-                    <div class="audio-player mt-auto">
-                        <div class="play-btn">
-                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+
+                    <div class="space-y-6">
+                        <!-- Service 1 -->
+                        <div class="glass-card p-8 rounded-[32px] flex flex-col reveal reveal-up active">
+                            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">smart_toy</span>
+                                Chatbot Strategy & Implementation
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Automate customer service and lead qualification with intelligent, conversational AI
+                                agents that work 24/7.
+                            </p>
+                            <div class="audio-player mt-auto">
+                                <div class="play-btn">
+                                    <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to
+                                    Details</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+
+                        <!-- Service 2 -->
+                        <div class="glass-card p-8 rounded-[32px] flex flex-col reveal reveal-up active delay-100">
+                            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary">edit_note</span>
+                                AI Content Creation
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Generate high-converting blogs, ads, and emails scaled to your brand's unique voice and
+                                optimized for impact.
+                            </p>
+                            <div class="audio-player mt-auto">
+                                <div class="play-btn">
+                                    <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to
+                                    Details</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+
+                        <!-- Service 3 -->
+                        <div class="glass-card p-8 rounded-[32px] flex flex-col reveal reveal-up active delay-200">
+                            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-accent-blue">target</span>
+                                Personalization Engine Setup
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Deliver hyper-targeted content and product recommendations to every user, increasing
+                                conversion and loyalty.
+                            </p>
+                            <div class="audio-player mt-auto">
+                                <div class="play-btn">
+                                    <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to
+                                    Details</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
                         </div>
+
+                        <!-- Service 4 -->
+                        <div class="glass-card p-8 rounded-[32px] flex flex-col reveal reveal-up active">
+                            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">ads_click</span>
+                                Programmatic Advertising
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Optimize ad spend automatically across platforms for maximum ROI and minimum waste using
+                                real-time AI bidding.
+                            </p>
+                            <div class="audio-player mt-auto">
+                                <div class="play-btn">
+                                    <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to
+                                    Details</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service 5 -->
+                        <div class="glass-card p-8 rounded-[32px] flex flex-col reveal reveal-up active delay-100">
+                            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary">query_stats</span>
+                                A/B Testing & Optimization
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Use AI to refine layouts and copy at scale, testing thousands of variations to find the
+                                perfect conversion formula.
+                            </p>
+                            <div class="audio-player mt-auto">
+                                <div class="play-btn">
+                                    <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to
+                                    Details</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <!-- Service 2 -->
-                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-100 active">
-                    <div class="w-12 h-12 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-secondary text-2xl font-bold">edit_note</span>
+                <!-- Column 2: Infrastructure & Media -->
+                <div>
+                    <div class="flex items-center gap-4 mb-10 reveal reveal-up active delay-100">
+                        <div class="w-10 h-10 bg-secondary/20 rounded-xl flex items-center justify-center">
+                            <span class="material-symbols-outlined text-secondary">memory</span>
+                        </div>
+                        <h2 class="text-3xl font-bold">Infrastructure & Media</h2>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">AI Content Creation & Optimization</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                        Generate high-converting blogs, ads, and emails scaled to your brand's unique voice and
-                        optimized for impact.
-                    </p>
-                    <div class="audio-player mt-auto">
-                        <div class="play-btn">
-                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+
+                    <div class="space-y-6">
+                        <!-- Service 6 -->
+                        <div class="glass-card p-8 rounded-[32px] flex flex-col reveal reveal-up active delay-100">
+                            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary">settings_suggest</span>
+                                AI Workflow Automation
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Streamline marketing operations and eliminate repetitive tasks by building intelligent
+                                workflows that run themselves.
+                            </p>
+                            <div class="audio-player mt-auto">
+                                <div class="play-btn">
+                                    <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to
+                                    Details</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
+
+                        <!-- Service 7 -->
+                        <div class="glass-card p-8 rounded-[32px] flex flex-col reveal reveal-up active delay-200">
+                            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-accent-blue">insights</span>
+                                Predictive Analytics
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Forecast trends and understand audience behavior before it happens, enabling proactive
+                                business decisions.
+                            </p>
+                            <div class="audio-player mt-auto">
+                                <div class="play-btn">
+                                    <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to
+                                    Details</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+
+                        <!-- Service 8 -->
+                        <div class="glass-card p-8 rounded-[32px] flex flex-col reveal reveal-up active">
+                            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary">video_camera_front</span>
+                                Visual & Video Creation
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Produce stunning graphics and high-quality videos instantly, empowering your marketing
+                                team to create at the speed of thought.
+                            </p>
+                            <div class="audio-player mt-auto">
+                                <div class="play-btn">
+                                    <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to
+                                    Details</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service 9 -->
+                        <div class="glass-card p-8 rounded-[32px] flex flex-col reveal reveal-up active delay-100">
+                            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary">share</span>
+                                Social Media Management
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Schedule, post, and analyze engagement smartly using AI to determine peak times and
+                                optimal content types.
+                            </p>
+                            <div class="audio-player mt-auto">
+                                <div class="play-btn">
+                                    <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to
+                                    Details</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service 10 -->
+                        <div class="glass-card p-8 rounded-[32px] flex flex-col reveal reveal-up active delay-200">
+                            <h3 class="text-xl font-bold mb-3 flex items-center gap-3">
+                                <span class="material-symbols-outlined text-accent-blue">mic_none</span>
+                                Voice Search & SEO
+                            </h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                                Optimize your content for voice-activated search queries to stay ahead of the curve as
+                                conversational search dominates.
+                            </p>
+                            <div class="audio-player mt-auto">
+                                <div class="play-btn">
+                                    <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to
+                                    Details</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Service 3 -->
-                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-200 active">
-                    <div class="w-12 h-12 bg-accent-blue/20 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-accent-blue text-2xl font-bold">insights</span>
+            <!-- FAQ Section -->
+            <div class="py-20 mt-12 bg-black/40 rounded-[40px] border border-white/5 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none"></div>
+                <div class="max-w-4xl mx-auto px-6 relative z-10">
+                    <div class="text-center mb-16 reveal reveal-up active">
+                        <h2 class="text-4xl font-extrabold mb-4">Frequently Asked Questions</h2>
+                        <p class="text-slate-400">Understanding the impact and implementation of AI in your business.
+                        </p>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Predictive Analytics for Customer Insights</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                        Forecast trends and understand audience behavior before it happens, enabling proactive business
-                        decisions.
-                    </p>
-                    <div class="audio-player mt-auto">
-                        <div class="play-btn">
-                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
-                        </div>
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
+
+                    <div class="space-y-4">
+                        <!-- FAQ 1 -->
+                        <details
+                            class="glass-card rounded-2xl group [&_summary::-webkit-details-marker]:hidden reveal reveal-up active">
+                            <summary
+                                class="flex items-center justify-between p-6 cursor-pointer font-semibold text-lg text-slate-200">
+                                How long does it take to see ROI on AI integrations?
+                                <span
+                                    class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+                            </summary>
+                            <div class="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-white/5 mt-2">
+                                For most AI workflow automations and customer service bots, businesses see a positive
+                                ROI within the first 3 to 6 months. By drastically reducing operational hours spent on
+                                repetitive tasks, the technology essentially pays for itself rapidly while freeing your
+                                team to focus on high-value human interactions.
+                            </div>
+                        </details>
+
+                        <!-- FAQ 2 -->
+                        <details
+                            class="glass-card rounded-2xl group [&_summary::-webkit-details-marker]:hidden reveal reveal-up active delay-100">
+                            <summary
+                                class="flex items-center justify-between p-6 cursor-pointer font-semibold text-lg text-slate-200">
+                                Will AI replace my current team?
+                                <span
+                                    class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+                            </summary>
+                            <div class="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-white/5 mt-2">
+                                Not at all. We frame AI as "augmented intelligence." Our solutions are designed to
+                                empower your existing team, not replace them. By automating mundane administrative and
+                                data-entry tasks, your staff can focus on strategy, creative problem-solving, and
+                                building deeper relationships with your clients.
+                            </div>
+                        </details>
+
+                        <!-- FAQ 3 -->
+                        <details
+                            class="glass-card rounded-2xl group [&_summary::-webkit-details-marker]:hidden reveal reveal-up active delay-200">
+                            <summary
+                                class="flex items-center justify-between p-6 cursor-pointer font-semibold text-lg text-slate-200">
+                                Is my business too small for "Enterprise" AI solutions?
+                                <span
+                                    class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+                            </summary>
+                            <div class="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-white/5 mt-2">
+                                AI has been democratized. What used to cost millions for Fortune 500 companies is now
+                                accessible and modular for agile small and medium enterprises. We build scalable
+                                systems—you only pay for what you need today, and the system grows as your business
+                                grows. Small businesses actually benefit the most from the leverage AI provides.
+                            </div>
+                        </details>
+
+                        <!-- FAQ 4 -->
+                        <details
+                            class="glass-card rounded-2xl group [&_summary::-webkit-details-marker]:hidden reveal reveal-up active">
+                            <summary
+                                class="flex items-center justify-between p-6 cursor-pointer font-semibold text-lg text-slate-200">
+                                Is our company data safe with these AI models?
+                                <span
+                                    class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+                            </summary>
+                            <div class="p-6 pt-0 text-slate-400 text-sm leading-relaxed border-t border-white/5 mt-2">
+                                Data security is our highest priority. We deploy enterprise-grade models with
+                                zero-retention policies, meaning the AI providers do not use your proprietary business
+                                data to train their public models. We also implement secure infrastructure environments
+                                to ensure compliance with modern data privacy standards.
+                            </div>
+                        </details>
                     </div>
                 </div>
+            </div>
 
-                <!-- Service 4 -->
-                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up active">
-                    <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-primary text-2xl font-bold">target</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Personalization Engine Setup</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                        Deliver hyper-targeted content and product recommendations to every user, increasing conversion
-                        and loyalty.
-                    </p>
-                    <div class="audio-player mt-auto">
-                        <div class="play-btn">
-                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
-                        </div>
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
-                        </div>
-                    </div>
+            <!-- 6 Grid Video Area -->
+            <div class="mt-24 mb-12 relative z-10">
+                <div class="text-center mb-12 reveal reveal-up active">
+                    <h2 class="text-3xl font-bold mb-4">See AI in Action</h2>
+                    <p class="text-slate-400">Watch our case studies and platform walkthroughs to understand the
+                        practical applications.</p>
                 </div>
 
-                <!-- Service 5 -->
-                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-100 active">
-                    <div class="w-12 h-12 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6">
-                        <span
-                            class="material-symbols-outlined text-secondary text-2xl font-bold">video_camera_front</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">AI-Powered Visual & Video Creation</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                        Produce stunning graphics and high-quality videos instantly, empowering your marketing team to
-                        create at the speed of thought.
-                    </p>
-                    <div class="audio-player mt-auto">
-                        <div class="play-btn">
-                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Video 1 -->
+                    <div class="glass-card rounded-[24px] overflow-hidden group cursor-pointer reveal reveal-up active">
+                        <div class="aspect-video bg-black/50 relative flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800"
+                                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                                alt="Video thumbnail">
+                            <div
+                                class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:bg-primary z-10 transition-colors">
+                                <span class="material-symbols-outlined text-white text-2xl fill-1">play_arrow</span>
+                            </div>
                         </div>
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+                        <div class="p-5 border-t border-white/5">
+                            <h4 class="font-bold text-slate-200 mb-1">Customer Service Automation</h4>
+                            <p class="text-xs text-slate-500">Case Study • Healthcare</p>
                         </div>
                     </div>
-                </div>
 
-                <!-- Service 6 -->
-                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-200 active">
-                    <div class="w-12 h-12 bg-accent-blue/20 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-accent-blue text-2xl font-bold">share</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Intelligent Social Media Management</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                        Schedule, post, and analyze engagement smartly using AI to determine peak times and optimal
-                        content types.
-                    </p>
-                    <div class="audio-player mt-auto">
-                        <div class="play-btn">
-                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                    <!-- Video 2 -->
+                    <div
+                        class="glass-card rounded-[24px] overflow-hidden group cursor-pointer reveal reveal-up active delay-100">
+                        <div class="aspect-video bg-black/50 relative flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+                                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                                alt="Video thumbnail">
+                            <div
+                                class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:bg-primary z-10 transition-colors">
+                                <span class="material-symbols-outlined text-white text-2xl fill-1">play_arrow</span>
+                            </div>
                         </div>
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+                        <div class="p-5 border-t border-white/5">
+                            <h4 class="font-bold text-slate-200 mb-1">Predictive Analytics Platform</h4>
+                            <p class="text-xs text-slate-500">Walkthrough • E-commerce</p>
                         </div>
                     </div>
-                </div>
 
-                <!-- Service 7 -->
-                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up active">
-                    <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-primary text-2xl font-bold">ads_click</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Programmatic Advertising Management</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                        Optimize ad spend automatically across platforms for maximum ROI and minimum waste using
-                        real-time AI bidding.
-                    </p>
-                    <div class="audio-player mt-auto">
-                        <div class="play-btn">
-                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                    <!-- Video 3 -->
+                    <div
+                        class="glass-card rounded-[24px] overflow-hidden group cursor-pointer reveal reveal-up active delay-200">
+                        <div class="aspect-video bg-black/50 relative flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800"
+                                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                                alt="Video thumbnail">
+                            <div
+                                class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:bg-primary z-10 transition-colors">
+                                <span class="material-symbols-outlined text-white text-2xl fill-1">play_arrow</span>
+                            </div>
                         </div>
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+                        <div class="p-5 border-t border-white/5">
+                            <h4 class="font-bold text-slate-200 mb-1">Content Engine Workflows</h4>
+                            <p class="text-xs text-slate-500">Tutorial • Agency Ops</p>
                         </div>
                     </div>
-                </div>
 
-                <!-- Service 8 -->
-                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-100 active">
-                    <div class="w-12 h-12 bg-secondary/20 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-secondary text-2xl font-bold">mic_none</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Voice Search & SEO Consulting</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                        Optimize your content for voice-activated search queries to stay ahead of the curve as
-                        conversational search dominates.
-                    </p>
-                    <div class="audio-player mt-auto">
-                        <div class="play-btn">
-                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                    <!-- Video 4 -->
+                    <div class="glass-card rounded-[24px] overflow-hidden group cursor-pointer reveal reveal-up active">
+                        <div class="aspect-video bg-black/50 relative flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=800"
+                                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                                alt="Video thumbnail">
+                            <div
+                                class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:bg-primary z-10 transition-colors">
+                                <span class="material-symbols-outlined text-white text-2xl fill-1">play_arrow</span>
+                            </div>
                         </div>
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+                        <div class="p-5 border-t border-white/5">
+                            <h4 class="font-bold text-slate-200 mb-1">Sales Agent Integration</h4>
+                            <p class="text-xs text-slate-500">Case Study • B2B SaaS</p>
                         </div>
                     </div>
-                </div>
 
-                <!-- Service 9 -->
-                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up delay-200 active">
-                    <div class="w-12 h-12 bg-accent-blue/20 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-accent-blue text-2xl font-bold">query_stats</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">A/B Testing & Conversion Optimization</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                        Use AI to refine layouts and copy at scale, testing thousands of variations to find the perfect
-                        conversion formula.
-                    </p>
-                    <div class="audio-player mt-auto">
-                        <div class="play-btn">
-                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                    <!-- Video 5 -->
+                    <div
+                        class="glass-card rounded-[24px] overflow-hidden group cursor-pointer reveal reveal-up active delay-100">
+                        <div class="aspect-video bg-black/50 relative flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&q=80&w=800"
+                                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                                alt="Video thumbnail">
+                            <div
+                                class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:bg-primary z-10 transition-colors">
+                                <span class="material-symbols-outlined text-white text-2xl fill-1">play_arrow</span>
+                            </div>
                         </div>
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+                        <div class="p-5 border-t border-white/5">
+                            <h4 class="font-bold text-slate-200 mb-1">Managing Voice SEO Setup</h4>
+                            <p class="text-xs text-slate-500">Walkthrough • Retail</p>
                         </div>
                     </div>
-                </div>
 
-                <!-- Service 10 -->
-                <div class="glass-card p-8 rounded-[32px] flex flex-col h-full reveal reveal-up active">
-                    <div class="w-12 h-12 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
-                        <span class="material-symbols-outlined text-primary text-2xl font-bold">settings_suggest</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">AI Workflow Automation Consulting</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                        Streamline marketing operations and eliminate repetitive tasks by building intelligent workflows
-                        that run themselves.
-                    </p>
-                    <div class="audio-player mt-auto">
-                        <div class="play-btn">
-                            <span class="material-symbols-outlined text-white text-sm fill-1">play_arrow</span>
+                    <!-- Video 6 -->
+                    <div
+                        class="glass-card rounded-[24px] overflow-hidden group cursor-pointer reveal reveal-up active delay-200">
+                        <div class="aspect-video bg-black/50 relative flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=800"
+                                class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                                alt="Video thumbnail">
+                            <div
+                                class="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 group-hover:bg-primary z-10 transition-colors">
+                                <span class="material-symbols-outlined text-white text-2xl fill-1">play_arrow</span>
+                            </div>
                         </div>
-                        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Listen to Details
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%"></div>
+                        <div class="p-5 border-t border-white/5">
+                            <h4 class="font-bold text-slate-200 mb-1">Real-time Ad Optimization</h4>
+                            <p class="text-xs text-slate-500">Case Study • Finance</p>
                         </div>
                     </div>
                 </div>
@@ -469,8 +694,9 @@
             © 2024 Lumina Quest AI Inc. Empowering Human Potential.
         </p>
         <div class="flex justify-center gap-6">
-            <a href="code.html" class="text-xs text-slate-600 hover:text-primary transition-colors">Privacy Policy</a>
-            <a href="code.html" class="text-xs text-slate-600 hover:text-primary transition-colors">Terms of Service</a>
+            <a href="index.html" class="text-xs text-slate-600 hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="index.html" class="text-xs text-slate-600 hover:text-primary transition-colors">Terms of
+                Service</a>
         </div>
     </footer>
 
