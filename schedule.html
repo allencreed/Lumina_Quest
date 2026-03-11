@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Schedule a Call - Lumina Quest</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#10b981", // Vibrant Green
+                        secondary: "#8b5cf6", // Purple
+                        "background-light": "#f8fafc",
+                        "background-dark": "#050505",
+                        accent: {
+                            purple: "#a855f7",
+                            blue: "#3b82f6",
+                            green: "#22c55e"
+                        }
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .gradient-mesh {
+            background: radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-focus:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        /* Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: none !important;
+        }
+
+        .reveal-up {
+            transform: translateY(40px);
+        }
+
+        /* Custom scrollbar for timeslots */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Calendar specific styles */
+        .calendar-day {
+            transition: all 0.2s ease;
+        }
+
+        .calendar-day:not(.disabled):hover {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            cursor: pointer;
+        }
+
+        .calendar-day.selected {
+            background-color: #10b981;
+            color: white;
+            font-weight: bold;
+        }
+
+        .calendar-day.disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        .time-slot {
+            transition: all 0.2s ease;
+        }
+        
+        .time-slot:hover {
+            border-color: #10b981;
+            color: #10b981;
+        }
+        
+        .time-slot.selected {
+            background-color: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white transition-colors duration-300">
+    <nav
+        class="fixed top-0 w-full z-50 border-b border-black/5 dark:border-white/5 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div
+                    class="w-8 h-8 bg-gradient-to-tr from-primary to-secondary rounded-lg flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-xl">blur_on</span>
+                </div>
+                <span class="text-xl font-bold tracking-tight">Lumina Quest</span>
+            </div>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+                <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="hover:text-primary transition-colors" href="#">About</a>
+                <a class="hover:text-primary transition-colors" href="services.html">Services</a>
+                <a class="hover:text-primary transition-colors" href="roi-calculator.html">ROI Calculator</a>
+                <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="schedule.html"
+                    class="px-5 py-2.5 text-sm font-semibold rounded-full bg-primary hover:bg-primary/90 text-white transition-all shadow-lg shadow-primary/20">Schedule a Call</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative pt-32 pb-24 overflow-hidden gradient-mesh min-h-screen flex items-center justify-center">
+        <div class="max-w-5xl w-full mx-auto px-6 relative z-10">
+            <div class="text-center mb-12 reveal reveal-up active">
+                <h1 class="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">Book a Discovery Call</h1>
+                <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+                    Find a time that works for you to discuss how AI can transform your operations.
+                </p>
+            </div>
+
+            <!-- Main Scheduling Interface -->
+            <div class="glass-card rounded-[32px] overflow-hidden reveal reveal-up active flex flex-col md:flex-row shadow-2xl">
+                
+                <!-- Left Column: Meeting Details -->
+                <div class="w-full md:w-1/3 p-8 border-b md:border-b-0 md:border-r border-white/10 bg-white/5">
+                    <div class="mb-6">
+                        <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center text-primary mb-4">
+                            <span class="material-symbols-outlined">video_camera_front</span>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-2">Lumina Quest Team</h2>
+                        <h3 class="text-xl font-semibold text-slate-300 mb-6">AI Strategy & Discovery</h3>
+                    </div>
+
+                    <div class="space-y-4 text-slate-400">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-xl">schedule</span>
+                            <span>30 min</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-xl">videocam</span>
+                            <span>Web conferencing details provided upon confirmation.</span>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-white/10 text-sm leading-relaxed">
+                            <p>During this session, we'll discuss:</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>Your current operational bottlenecks</li>
+                                <li>Potential AI solutions specific to your industry</li>
+                                <li>Expected ROI & implementation timeline</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Area (Calendar / Form) -->
+                <div class="w-full md:w-2/3 p-4 md:p-8 flex flex-col min-h-[500px]" id="interactive-area">
+                    
+                    <!-- View 1: Date & Time Selection -->
+                    <div id="view-calendar" class="flex flex-col h-full w-full opacity-100 transition-opacity duration-300">
+                        <h3 class="text-xl font-bold mb-6">Select a Date & Time</h3>
+                        
+                        <div class="flex flex-col lg:flex-row gap-8 h-full">
+                            <!-- Calendar -->
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between mb-4">
+                                    <button id="prev-month" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+                                        <span class="material-symbols-outlined">chevron_left</span>
+                                    </button>
+                                    <span id="current-month-year" class="font-medium text-lg">Loading...</span>
+                                    <button id="next-month" class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors">
+                                        <span class="material-symbols-outlined">chevron_right</span>
+                                    </button>
+                                </div>
+                                
+                                <div class="grid grid-cols-7 gap-1 text-center mb-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                                    <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                                </div>
+                                
+                                <div id="calendar-grid" class="grid grid-cols-7 gap-1 text-center">
+                                    <!-- Days will be generated here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Time Slots -->
+                            <div class="w-full lg:w-48 flex flex-col h-full hidden" id="time-slots-container">
+                                <div class="mb-4 text-center">
+                                    <span id="selected-date-display" class="font-medium text-slate-300"></span>
+                                </div>
+                                <div id="time-slots" class="flex-1 overflow-y-auto custom-scrollbar pr-2 space-y-2 max-h-[350px]">
+                                    <!-- Time slots generate here -->
+                                </div>
+                                <button id="btn-continue" class="w-full mt-4 py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all opacity-50 cursor-not-allowed pointer-events-none">
+                                    Next
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- View 2: Booking Form (Hidden initially) -->
+                    <div id="view-form" class="hidden flex-col h-full w-full opacity-0 transition-opacity duration-300">
+                        <div class="flex items-center gap-4 mb-6">
+                            <button id="btn-back" class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/5 transition-colors text-slate-400">
+                                <span class="material-symbols-outlined">arrow_back</span>
+                            </button>
+                            <h3 class="text-xl font-bold">Enter Details</h3>
+                        </div>
+
+                        <div class="mb-6 p-4 rounded-xl bg-white/5 border border-white/10 flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">event_available</span>
+                            <div>
+                                <p class="font-medium" id="final-date-time-display"></p>
+                                <p class="text-xs text-slate-400">30 Min · Web Conference</p>
+                            </div>
+                        </div>
+
+                        <form action="https://formsubmit.co/sheldon.rollins@icloud.com" method="POST" class="space-y-4">
+                            <!-- Hidden fields mapping to the selected date/time -->
+                            <input type="hidden" name="Meeting Date" id="input-date">
+                            <input type="hidden" name="Meeting Time" id="input-time">
+                            <input type="hidden" name="Subject" value="New Meeting Scheduled">
+                            <!-- Formsubmit config -->
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="https://luminaquest.com/confirmation.html">
+                            <!-- Custom Autoresponse from Sheldon / Lumina Quest -->
+                            <input type="hidden" name="_autoresponse" value="Thank you! We have received your scheduling request. Sheldon from Lumina Quest will be in touch shortly to confirm details.">
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-sm font-medium text-slate-400">First Name *</label>
+                                    <input type="text" name="First Name" required
+                                        class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-600 input-focus transition-all">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-sm font-medium text-slate-400">Last Name *</label>
+                                    <input type="text" name="Last Name" required
+                                        class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-600 input-focus transition-all">
+                                </div>
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-sm font-medium text-slate-400">Email Address *</label>
+                                <input type="email" name="email" required
+                                    class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-600 input-focus transition-all">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-sm font-medium text-slate-400">Please share anything that will help prepare for our meeting.</label>
+                                <textarea rows="3" name="Notes"
+                                    class="w-full px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-slate-600 input-focus transition-all"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full mt-4 py-3.5 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl hover:opacity-90 transition-all shadow-lg shadow-primary/20">
+                                Schedule Event
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer
+        class="py-12 border-t border-black/5 dark:border-white/5 bg-background-light dark:bg-background-dark text-center relative z-10 transition-colors duration-300">
+        <p class="text-slate-500 text-sm mb-4">
+            © 2024 Lumina Quest AI Inc. Empowering Human Potential.
+        </p>
+        <div class="flex justify-center gap-6">
+            <a href="#" class="text-xs text-slate-600 hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="#" class="text-xs text-slate-600 hover:text-primary transition-colors">Terms of Service</a>
+        </div>
+    </footer>
+
+    <!-- Voiceflow Widget -->
+    <script type="text/javascript">
+      (function(d, t) {
+          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          v.onload = function() {
+            window.voiceflow.chat.load({
+              verify: { projectID: '66cfb858959560f67c59c41f' },
+              url: 'https://general-runtime.voiceflow.com',
+              versionID: 'development'
+            });
+          }
+          v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+      })(document, 'script');
+    </script>
+
+    <!-- Calendar & Interactive Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // General Animation observer
+            const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('active'); }
+                });
+            }, observerOptions);
+            document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+            // Calendar Logic
+            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            
+            let currentDate = new Date(); // Start at today
+            let currentMonth = currentDate.getMonth();
+            let currentYear = currentDate.getFullYear();
+            
+            let selectedDateObj = null;
+            let selectedTimeStr = null;
+
+            const calendarGrid = document.getElementById('calendar-grid');
+            const monthYearDisplay = document.getElementById('current-month-year');
+            const prevMonthBtn = document.getElementById('prev-month');
+            const nextMonthBtn = document.getElementById('next-month');
+            
+            const timeSlotsContainer = document.getElementById('time-slots-container');
+            const timeSlotsDiv = document.getElementById('time-slots');
+            const selectedDateDisplay = document.getElementById('selected-date-display');
+            const btnContinue = document.getElementById('btn-continue');
+            const btnBack = document.getElementById('btn-back');
+            
+            const viewCalendar = document.getElementById('view-calendar');
+            const viewForm = document.getElementById('view-form');
+            
+            // Form display elements
+            const finalDateTimeDisplay = document.getElementById('final-date-time-display');
+            const hiddenDateInput = document.getElementById('input-date');
+            const hiddenTimeInput = document.getElementById('input-time');
+
+            function renderCalendar(month, year) {
+                calendarGrid.innerHTML = '';
+                monthYearDisplay.textContent = `${monthNames[month]} ${year}`;
+                
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+                
+                const today = new Date();
+                today.setHours(0,0,0,0); // normalize today's date for comparison
+
+                // Add empty cells for days before the 1st
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyCell = document.createElement('div');
+                    emptyCell.className = "w-10 h-10 aspect-square";
+                    calendarGrid.appendChild(emptyCell);
+                }
+
+                // Add days of the month
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const dayCell = document.createElement('div');
+                    dayCell.className = "w-10 h-10 aspect-square flex items-center justify-center rounded-full text-sm calendar-day mx-auto";
+                    dayCell.textContent = i;
+                    
+                    const cellDate = new Date(year, month, i);
+                    
+                    // Disable past dates, weekends (optional, assuming business days)
+                    const isWeekend = cellDate.getDay() === 0 || cellDate.getDay() === 6;
+                    
+                    if (cellDate < today || isWeekend) {
+                        dayCell.classList.add('disabled');
+                    } else {
+                        // If it's the currently selected date, style it
+                        if (selectedDateObj && cellDate.getTime() === selectedDateObj.getTime()) {
+                            dayCell.classList.add('selected');
+                        }
+
+                        dayCell.addEventListener('click', () => {
+                            // Clear previous selected
+                            document.querySelectorAll('.calendar-day').forEach(el => el.classList.remove('selected'));
+                            dayCell.classList.add('selected');
+                            
+                            selectedDateObj = new Date(year, month, i);
+                            
+                            // Format date for display: "Friday, October 20"
+                            const options = { weekday: 'long', month: 'long', day: 'numeric' };
+                            selectedDateDisplay.textContent = selectedDateObj.toLocaleDateString(undefined, options);
+                            
+                            // Reset time slot selection
+                            selectedTimeStr = null;
+                            btnContinue.classList.add('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+                            
+                            generateTimeSlots();
+                            timeSlotsContainer.classList.remove('hidden');
+                        });
+                    }
+                    
+                    calendarGrid.appendChild(dayCell);
+                }
+            }
+
+            function generateTimeSlots() {
+                timeSlotsDiv.innerHTML = '';
+                // Generic 9 AM to 5 PM slots, 30 min increments
+                const slots = [
+                    "09:00 AM", "09:30 AM", "10:00 AM", "10:30 AM", "11:00 AM", "11:30 AM",
+                    "01:00 PM", "01:30 PM", "02:00 PM", "02:30 PM", "03:00 PM", "03:30 PM", "04:00 PM", "04:30 PM"
+                ];
+
+                slots.forEach(time => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full py-3 border border-white/20 rounded-xl font-medium text-sm time-slot bg-white/5";
+                    btn.textContent = time;
+
+                    btn.addEventListener('click', () => {
+                        // Clear previously selected slot
+                        document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+                        btn.classList.add('selected');
+                        
+                        selectedTimeStr = time;
+                        
+                        // Enable continue button
+                        btnContinue.classList.remove('opacity-50', 'cursor-not-allowed', 'pointer-events-none');
+                    });
+
+                    timeSlotsDiv.appendChild(btn);
+                });
+            }
+
+            // Month navigation
+            prevMonthBtn.addEventListener('click', () => {
+                currentMonth--;
+                if (currentMonth < 0) {
+                    currentMonth = 11;
+                    currentYear--;
+                }
+                renderCalendar(currentMonth, currentYear);
+            });
+
+            nextMonthBtn.addEventListener('click', () => {
+                currentMonth++;
+                if (currentMonth > 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                }
+                renderCalendar(currentMonth, currentYear);
+            });
+
+            // View Transition Logic
+            btnContinue.addEventListener('click', () => {
+                if(!selectedDateObj || !selectedTimeStr) return;
+                
+                // Set the final display string in the form
+                const options = { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' };
+                const dateStr = selectedDateObj.toLocaleDateString(undefined, options);
+                
+                finalDateTimeDisplay.textContent = `${dateStr} @ ${selectedTimeStr}`;
+                hiddenDateInput.value = dateStr;
+                hiddenTimeInput.value = selectedTimeStr;
+
+                // Animate transition
+                viewCalendar.classList.remove('opacity-100');
+                viewCalendar.classList.add('opacity-0');
+                
+                setTimeout(() => {
+                    viewCalendar.classList.add('hidden');
+                    viewCalendar.classList.remove('flex');
+                    
+                    viewForm.classList.remove('hidden');
+                    viewForm.classList.add('flex');
+                    
+                    // Trigger reflow
+                    void viewForm.offsetWidth;
+                    
+                    viewForm.classList.remove('opacity-0');
+                    viewForm.classList.add('opacity-100');
+                }, 300);
+            });
+
+            btnBack.addEventListener('click', () => {
+                viewForm.classList.remove('opacity-100');
+                viewForm.classList.add('opacity-0');
+                
+                setTimeout(() => {
+                    viewForm.classList.add('hidden');
+                    viewForm.classList.remove('flex');
+                    
+                    viewCalendar.classList.remove('hidden');
+                    viewCalendar.classList.add('flex');
+                    
+                    // Trigger reflow
+                    void viewCalendar.offsetWidth;
+                    
+                    viewCalendar.classList.remove('opacity-0');
+                    viewCalendar.classList.add('opacity-100');
+                }, 300);
+            });
+
+            // Initialize calendar
+            renderCalendar(currentMonth, currentYear);
+        });
+    </script>
+</body>
+
+</html>
