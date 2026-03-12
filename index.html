@@ -220,8 +220,22 @@
             <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-600 dark:text-slate-400">
                 <a class="hover:text-primary transition-colors" href="index.html">Home</a>
                 <a class="hover:text-primary transition-colors" href="#">About</a>
-                <a class="hover:text-primary transition-colors" href="services.html">Services</a>
-                <a class="hover:text-primary transition-colors" href="roi-calculator.html">ROI Calculator</a>
+                
+                <!-- Services Dropdown -->
+                <div class="relative group">
+                    <a class="hover:text-primary transition-colors flex items-center gap-1 cursor-pointer" href="services.html">
+                        Services
+                        <span class="material-symbols-outlined text-sm transition-transform group-hover:rotate-180">expand_more</span>
+                    </a>
+                    <!-- Dropdown Menu -->
+                    <div class="absolute top-8 left-0 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top translate-y-2 group-hover:translate-y-0 z-[100]">
+                        <div class="glass-card bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-xl mt-2">
+                            <a href="roi-calculator.html" class="block px-4 py-2.5 text-sm hover:bg-white/5 hover:text-primary rounded-xl transition-colors">ROI Calculator</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a class="hover:text-primary transition-colors" href="blog.html">Blog</a>
                 <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
             </div>
             <div class="flex items-center gap-4">
