@@ -193,21 +193,45 @@
                 <h2 class="text-2xl font-bold mb-8 flex items-center gap-2"><span class="material-symbols-outlined text-primary">article</span> Latest Articles</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Article 1 -->
-                    <a href="#" class="glass-card rounded-3xl overflow-hidden group block">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover opacity-80 group-hover:scale-110 transition-transform duration-700" alt="Code">
+                    <!-- Featured Article 1 -->
+                    <div class="lg:col-span-2 glass-card rounded-3xl overflow-hidden group">
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" alt="AI Transformation">
                             <div class="absolute top-4 left-4">
-                                <span class="bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-xs font-semibold text-white">Engineering</span>
+                                <span class="bg-primary/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-primary border border-primary/30">Strategic AI</span>
                             </div>
                         </div>
-                        <div class="p-6">
-                            <p class="text-xs text-slate-400 mb-2">March 12, 2026 • 5 min read</p>
-                            <h4 class="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">Optimizing AI Response Times in Production</h4>
-                            <p class="text-sm text-slate-400 leading-relaxed mb-4">A technical deep dive into how we cut voice latency by 400ms using edge computing and streaming LLM responses.</p>
-                            <span class="text-sm font-semibold text-primary flex items-center gap-1">Read article <span class="material-symbols-outlined text-sm">arrow_forward</span></span>
+                        <div class="p-8">
+                            <div class="flex items-center gap-4 mb-4 text-xs text-slate-400">
+                                <span>March 17, 2026</span>
+                                <span>•</span>
+                                <span>6 min read</span>
+                                <span>•</span>
+                                <span class="text-primary font-semibold">By Sheldon Rollins</span>
+                            </div>
+                            <h3 class="text-2xl md:text-3xl font-bold mb-6 text-white leading-tight">Why Your Business Can’t Afford to Ignore AI — And Why Now Is the Moment to Act</h3>
+                            
+                            <div class="space-y-4 text-slate-300 leading-relaxed text-base">
+                                <p>Artificial intelligence isn’t coming — it’s already here, reshaping every corner of business faster than most realize. From small startups to global corporations, companies that embrace AI are seeing real returns: McKinsey reports that organizations leveraging AI have cut operational costs by up to 30% and boosted productivity by nearly 40%. Meanwhile, those who hesitate risk watching competitors leap ahead while they’re still debating the first move.</p>
+                                
+                                <p>At Lumina Quest, we’ve seen firsthand how AI transforms ordinary teams into insight-driven powerhouses. Whether it’s automating tedious data tasks, predicting customer trends before they happen, or tightening marketing precision, AI doesn’t just save time — it builds a competitive moat that grows wider every quarter.</p>
+                                
+                                <p>Still, too many businesses treat AI like something for “later.” But every day of delay means lost efficiency, missed leads, and outdated decision-making. This isn’t fearmongering — it’s math. Every minute an algorithm could be optimizing your sales funnel or analyzing customer behavior, it’s working for someone else instead.</p>
+                                
+                                <p>The good news? You don’t have to go it alone. Lumina Quest helps organizations build practical, ROI-focused AI strategies that fit their size and goals — not just flashy tech words, but actionable systems that pay off. The businesses that move now will be the ones everyone else studies tomorrow.</p>
+                                
+                                <p class="font-semibold text-white italic">AI is no longer optional — it’s the new fuel for growth. The question isn’t if your company will use it … it’s when. Don’t get left behind in 2026’s AI acceleration. Let Lumina Quest show you what’s possible.</p>
+                            </div>
+                            
+                            <div class="mt-8 flex items-center justify-between">
+                                <button class="px-6 py-2.5 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">Share Article</button>
+                                <div class="flex gap-4">
+                                    <span class="material-symbols-outlined text-slate-400 hover:text-white cursor-pointer transition-colors">share</span>
+                                    <span class="material-symbols-outlined text-slate-400 hover:text-white cursor-pointer transition-colors">bookmark</span>
+                                </div>
+                            </div>
                         </div>
-                    </a>
+                    </div>
 
                     <!-- Article 2 -->
                     <a href="#" class="glass-card rounded-3xl overflow-hidden group block">
