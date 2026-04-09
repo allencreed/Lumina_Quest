@@ -384,15 +384,24 @@
             });
         });
 
-        // Audio player demo
+        // Audio player with real audio
+        const audioURLs = {
+            '1': 'https://agent-cdn.minimax.io/mcp/audio_generation/1775765621_be87eeb4.mp3',
+            '2': 'https://agent-cdn.minimax.io/mcp/audio_generation/1775765114_2ff4982f.mp3',
+            '3': 'https://agent-cdn.minimax.io/mcp/audio_generation/1775765103_9adc988e.mp3',
+            '4': 'https://agent-cdn.minimax.io/mcp/audio_generation/1775765146_20b0350a.mp3',
+            '5': 'https://agent-cdn.minimax.io/mcp/audio_generation/1775765127_2bd30bed.mp3'
+        };
+        
         const audioPlayers = document.querySelectorAll('.audio-player');
         audioPlayers.forEach(player => {
+            const articleId = player.dataset.article;
             player.addEventListener('click', () => {
                 player.classList.toggle('playing');
                 if (player.classList.contains('playing')) {
-                    console.log('Playing audio for article:', player.dataset.article);
-                } else {
-                    console.log('Paused audio for article:', player.dataset.article);
+                    if(articleId && audioURLs[articleId]) {
+                        new Audio(audioURLs[articleId]).play();
+                    }
                 }
             });
         });
