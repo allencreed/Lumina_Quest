@@ -38,7 +38,7 @@
 
 <body class="bg-black text-white">
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-black/80 backdrop-blur-md">
+    <nav class="fixed top-0 w-full z-50 border-b border-white/5 bg-black/80 backdrop-blur-md relative">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <div class="w-8 h-8 bg-gradient-to-tr from-primary to-secondary rounded-lg flex items-center justify-center">
@@ -52,9 +52,21 @@
                 <a href="blog.html" class="text-primary">Blog</a>
                 <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
             </div>
-            <a href="schedule.html" class="px-5 py-2.5 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors text-sm">
-                Schedule Call
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="schedule.html" class="px-5 py-2.5 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors text-sm">
+                    Schedule Call
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-400 hover:text-white">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-black/95 border-b border-white/10 p-4 flex flex-col gap-4">
+            <a href="index.html" class="text-slate-400 hover:text-white">Home</a>
+            <a href="services.html" class="text-slate-400 hover:text-white">Services</a>
+            <a href="blog.html" class="text-slate-400 hover:text-white">Blog</a>
+            <a href="contact.html" class="text-slate-400 hover:text-white">Contact</a>
+            <a href="schedule.html" class="text-primary">Schedule Call</a>
         </div>
     </nav>
 
@@ -149,6 +161,18 @@
             });
         }, observerOptions);
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+    <!-- Mobile Menu Toggle -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    });
     </script>
 </body>
 
