@@ -1,0 +1,44 @@
+name: Daily AI Blog Scheduler
+
+on:
+  schedule:
+    # 8:00 AM ET = 12:00 UTC
+    - cron: '0 12 * * *'
+    # 3:00 PM ET = 19:00 UTC  
+    - cron: '0 19 * * *'
+  workflow_dispatch:
+
+jobs:
+  publish-blogs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run blog scheduler (AM)
+        if: github.event.schedule == '0 12 * * *'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node blog-scheduler.js am
+
+      - name: Run blog scheduler (PM)
+        if: github.event.schedule == '0 19 * * *'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node blog-scheduler.js pm
+
+      - name: Commit new blog posts
+        run: |
+          git config --local user.email "blog-bot@Lumina Quest"
+          git config --local user.name "Blog Bot"
+          git add -A
+          git commit -m "Automated blog posts $(date +%Y-%m-%d)" || echo "No new posts"
+          git push
